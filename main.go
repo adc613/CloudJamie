@@ -49,7 +49,7 @@ func sendText(args ...string) {
   msg := args[0]
   accountSid := "AC19dd69d986658313d0c871bdbf0c37de"
   authToken := os.Getenv("TWILIO")
-  to := os.Getenv("MY_NUMBER")
+  to := os.Getenv("TO_NUMBER")
   from := os.Getenv("TWILIO_NUMBER")
   urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
