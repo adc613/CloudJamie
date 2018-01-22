@@ -38,8 +38,8 @@ func main() {
   fmt.Printf("start\n")
   title, first, last := getName()
   pic := getADog()
-  msg := "Hello Jamie, this is Cloud Jamie Adam's, personal assistant. " 
-  msg += "Adam says goodnight and here's picture of" + title + ". " + first + " " + last
+  msg := "Hello Jamie, this is Cloud Jamie Adam's, personal assistant. "
+  msg += "Adam says goodnight and here's picture of " + title + ". " + first + " " + last
   msg += ". Sweet dreams!"
   sendText(msg, pic)
 
@@ -52,7 +52,7 @@ func sendText(args ...string) {
   to := os.Getenv("MY_NUMBER")
   from := os.Getenv("TWILIO_NUMBER")
   urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
- 
+
   // Build out the data for our message
   v := url.Values{}
   v.Set("To", to)
@@ -62,15 +62,15 @@ func sendText(args ...string) {
     v.Set("MediaUrl", args[1])
   }
   rb := *strings.NewReader(v.Encode())
- 
+
   // Create client
   client := &http.Client{}
- 
+
   req, _ := http.NewRequest("POST", urlStr, &rb)
   req.SetBasicAuth(accountSid, authToken)
   req.Header.Add("Accept", "application/json")
   req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
- 
+
   // Make request
   resp, err := client.Do(req)
   if err != nil {
@@ -96,7 +96,7 @@ func getADog() string {
 }
 
 func getName() (string, string, string) {
-  resp, err := http.Get("https://randomuser.me/api")
+  resp, err := http.Get("https://randomuser.me/api?nat=us")
   if err != nil {
     return "Ms.", "Jamie", "Yu"
   } else {
