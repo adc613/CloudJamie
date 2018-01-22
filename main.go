@@ -38,9 +38,9 @@ func main() {
   fmt.Printf("start\n")
   title, first, last := getName()
   pic := getADog()
-  msg := "Hello Jamie, this is Cloud Jamie, Adam's personal assistant. " 
-  msg += "Adam says goodnight and here's picture of " + title + ". " + first
-  msg += " " + last ". Sweet dreams!"
+  msg := "Hello Jamie, this is Cloud Jamie Adam's, personal assistant. " 
+  msg += "Adam says goodnight and here's picture of" + title + ". " + first + " " + last
+  msg += ". Sweet dreams!"
   sendText(msg, pic)
 
 }
