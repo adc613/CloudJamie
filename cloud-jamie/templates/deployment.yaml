@@ -1,0 +1,33 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "cloud-jamie.fullname" . }}
+  labels:
+    app: {{ template "cloud-jamie.name" . }}
+    chart: {{ template "cloud-jamie.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  schedule: "00 19 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: {{ .Chart.Name }}
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            env:
+            - name: TWILIO
+              valueFrom:
+                secretKeyRef:
+                  name: twilio
+                  key: secret
+            - name: TWILIO_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: twilio
+                  key: number
+            - name: TO_NUMBER
+              value: "{{ .Values.image.recipient_number }}"
+          restartPolicy: {{ .Values.image.restartPolicy }}
