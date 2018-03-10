@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repositslory: gcr.io/turnkey-charter-195519/cloud-jamie
-  tag: v1
+  repository : 'gcr.io/turnkey-charter-195519/cloud-jamie'
+  tag: 'v1'
   pullPolicy: IfNotPresent
-  recipient_number: "+18475626149"
+  recipient_number: "+18475551234"
   restartPolicy: OnFailure
 
 nodeSelector: {}
