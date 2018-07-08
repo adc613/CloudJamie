@@ -8,7 +8,7 @@ image:
   repository : 'gcr.io/turnkey-charter-195519/cloud-jamie'
   tag: 'v1'
   pullPolicy: IfNotPresent
-  recipient_number: "+18475551234"
+  recipient_number: "+12019378224"
   restartPolicy: OnFailure
 
 nodeSelector: {}
