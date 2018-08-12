@@ -81,7 +81,7 @@ func sendText(args ...string) {
 }
 
 func getADog() string {
-  resp, err := http.Get("https://api.thedogapi.co.uk/v2/dog.php")
+  resp, err := http.Get("https://api.thedogapi.com/v1/images/search")
   if err != nil {
     fmt.Printf("fail")
   } else {
