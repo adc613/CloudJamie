@@ -81,18 +81,20 @@ func sendText(args ...string) {
 }
 
 func getADog() string {
-  resp, err := http.Get("https://api.thedogapi.co.uk/v2/dog.php")
+  resp, err := http.Get("https://api.thedogapi.com/v1/images/search")
   if err != nil {
-    fmt.Printf("fail")
-  } else {
-    fmt.Printf(resp.Status)
-
-    defer resp.Body.Close()
-    dog := Response{}
-    json.NewDecoder(resp.Body).Decode(&dog)
-    return dog.Data[0].Url
+    return "https://cdn2.thedogapi.com/images/B13NtuhSm_640.jpg"
   }
-  return ""
+
+  defer resp.Body.Close()
+  dec := json.NewDecoder(resp.Body)
+
+  var dogs []Dog
+  decErr := dec.Decode(&dogs)
+  if decErr != nil || len(dogs) < 1 {
+    return "https://cdn2.thedogapi.com/images/Bko0fl547_640.jpg"
+  }
+  return dogs[0].Url
 }
 
 func getName() (string, string, string) {
